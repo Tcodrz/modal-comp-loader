@@ -1,3 +1,4 @@
+import { OneComponent } from './../../../admin/components/one/one.component';
 import { ModalParams, ModalsService } from 'src/app/core/services/modals.service';
 import { Component, ComponentFactoryResolver, ComponentRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { ModalDirective } from 'angular-bootstrap-md';
@@ -21,6 +22,7 @@ export class GenericModalComponent implements OnInit {
     this.params = this._modals.getParams();
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.params.component);
     this.componentRef = this.viewContainer.createComponent(componentFactory);
+    (this.componentRef.instance as OneComponent).inputs = this.params;
   }
   onClose(event) { this.componentRef.destroy(); }
 
